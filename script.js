@@ -95,7 +95,6 @@ var result = $('.result');
 $('.roundEnd').click(function(){
 
 	end();
-
 })
 
 
@@ -148,7 +147,7 @@ $('form').submit(function(e){
 });
 
 $('#start').click(function(){
-	
+
 	if ($('#user').val() != '') 
 	{
 		$('.start').css('display', 'none');
