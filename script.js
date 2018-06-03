@@ -28,7 +28,6 @@ function show(level) {
 	$('label[for=answer2]').text( answer[level*4+1] );
 	$('label[for=answer3]').text( answer[level*4+2] );
 	$('label[for=answer4]').text( answer[level*4+3] );
-
 }
 
 var resultConst = [];		
@@ -149,7 +148,7 @@ $('form').submit(function(e){
 });
 
 $('#start').click(function(){
-
+	
 	if ($('#user').val() != '') 
 	{
 		$('.start').css('display', 'none');
@@ -163,7 +162,6 @@ $('#start').click(function(){
 	var value = $('#user').val();
 
 	createCookie(name, value, 1);
-
 });
 
 function createCookie(name, value, days) {
