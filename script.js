@@ -20,3 +20,43 @@ if (username != null)
 
 	});
 }
+
+function show(level) {
+
+	$('.question').text( question[level] );
+	$('label[for=answer1]').text( answer[level*4+0] );
+	$('label[for=answer2]').text( answer[level*4+1] );
+	$('label[for=answer3]').text( answer[level*4+2] );
+	$('label[for=answer4]').text( answer[level*4+3] );
+
+}
+
+var resultConst = [];		
+show(level);
+var tr = $('tr'); 
+$(tr[tr.length - (level + 1)]).css('background','#FF0');
+
+$('.btn').click(function(){
+
+	$("#timer_inp").text(60);
+
+	if( $('input[name=answer]:checked').val() == key[level] )
+	{
+		level++;
+		show(level);
+	}
+	else{gameOwer()}
+	
+	$('input').prop('checked', false);
+	$(tr.css('background','#fff'));
+	$(tr.removeClass('result'));
+	$(tr[tr.length - (level + 1)]).css('background','#FF0');
+	$(tr[tr.length - (level)]).css('color','#f0f');
+	$(tr[tr.length - (level)]).addClass('result');
+	$('label').css('color', '#555');
+
+	if (level == 5 || level == 10 || level == 15) 
+	{
+		 resultConst.push($(tr[tr.length - (level)]).addClass('resultConst'));
+	}
+})
