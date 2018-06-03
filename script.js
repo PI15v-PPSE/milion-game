@@ -60,3 +60,108 @@ $('.btn').click(function(){
 		 resultConst.push($(tr[tr.length - (level)]).addClass('resultConst'));
 	}
 })
+
+Math.rand = function(min, max){
+	return Math.round(Math.random() * (max-min) + min);
+}
+
+var inputLabel = document.getElementsByTagName('label');
+$('.round50').click(function(){
+var inputAnswer = document.getElementsByName('answer');
+var exp = [];	
+var count = 0;
+	while(count < 2) {
+		var index = Math.rand(0,3);
+		if (exp.indexOf(index) == -1 && $(inputAnswer[index]).val() != key[level] ) 
+		{
+			$(inputLabel[index]).css('color', '#69f');
+			count++;
+			exp.push(index);
+		}
+	}
+		$(this).off('click');
+		$(this).css('background', 'red');
+})
+	 
+
+$('.round').click(function(){
+		
+		$(inputLabel[Math.rand(0,3)]).css('color', '#F90'),
+		$(this).off('click');
+		$(this).css('background', 'red');
+		
+})
+
+var result = $('.result'); 
+$('.roundEnd').click(function(){
+
+	end();
+
+})
+
+
+function end() {
+
+	$('.end').css('display', 'block');
+
+	if (tr.hasClass('result')) 
+	{
+		var tdResult = $("tr.result").children();
+		var tdText = tdResult[1].textContent;	
+		$('.showResult').text('ВЫ ВЫИГРАЛИ: ' + tdText + ' гривень');
+	}
+}
+
+function gameOwer() {
+
+	$('.end').css('display', 'block');
+
+	if (tr.hasClass('resultConst')) 
+	{
+		var tdResult1 = $(resultConst[resultConst.length - 1]).children();
+		var tdText1 = tdResult1[1].textContent;
+		$('.showResult').text('ВЫ ВЫИГРАЛИ: ' + tdText1 + ' гривень');
+	}
+}
+
+function timer(){
+
+	 var objTimer=document.getElementById('timer_inp');
+	 objTimer.innerHTML--;
+  	
+  	 if(objTimer.innerHTML==5)
+	 	{
+	 	$('#timer_inp').css('background', 'red');
+	 	}
+	 if(objTimer.innerHTML==0)
+		{
+	 	setTimeout(function(){},1000);
+	 	gameOwer();
+		}
+	 else{setTimeout(timer,1000)}
+
+}
+
+$('form').submit(function(e){ 
+
+		e.preventDefault()
+	
+});
+
+$('#start').click(function(){
+
+	if ($('#user').val() != '') 
+	{
+		$('.start').css('display', 'none');
+		setTimeout(timer,1000);
+	}
+	else
+	{
+		$('#user').css('background', '#f30')
+	}	
+
+	var value = $('#user').val();
+
+	createCookie(name, value, 1);
+
+});
