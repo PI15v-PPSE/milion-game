@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<article xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>Кто хочет стать миллионером</title>
+        <author>
+            <orgname>ДонНТУ</orgname>
+            <address>
+<city>Донецк 2018</city>
+           </address>
+            <email>anton.demianenko.00@mail.ru</email>
+        </author>
+        <author>
+            <personname><firstname>Антон</firstname><surname>Демяненко</surname></personname>
+        </author>
+    </info>
+    <sect1>
+        <title>О программе</title>
+        <para>Игра "Кто хоче стать миллионером" - аналог знаменитой игры викорины. Эта игра позволит с пользой для интелекта справить досуг.</para>
+        <informalfigure>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/img1.jpg" align="center" scale="50"
+                        annotations="Окно ввода имени "/>
+                </imageobject>
+            </mediaobject>
+            <para>Для того, что бы начать обменивать свои знания на деньги, клонируйте репозиторий <link
+                    xlink:href="https://github.com/PI15v-PPSE/milion-game"/>. После этого откройте в
+                браузере файл index.html</para>
+        </informalfigure>
+    </sect1>
+    <sect1>
+        <title>Сценарии использования</title>
+        <sect2>
+            <title>Сценарий 1 (Проигрыш)</title>
+            <orderedlist>
+                <listitem>
+                    <para>Пользователь не правильно отвечае на вопрос викторины<inlinemediaobject>
+                            <imageobject>
+                                <imagedata fileref="images/img2.png" scale="50" align="center"/>
+                            </imageobject>
+                        </inlinemediaobject></para>
+                </listitem>
+                <listitem>
+                    <para>Игрок выиграл<inlinemediaobject>
+                            <imageobject>
+                                <imagedata fileref="images/img3.png" align="center" scale="50"/>
+                            </imageobject>
+                        </inlinemediaobject></para>
+                </listitem>
+                <listitem>
+                    <para>Игрок выбирае подсказку 50/50.<inlinemediaobject>
+                            <imageobject>
+                                <imagedata fileref="images/img4.png" align="center" scale="50"/>
+                            </imageobject>
+                        </inlinemediaobject></para>
+                </listitem>
+            </orderedlist>
+            <para>Проверка на заполнение поле "имя игрока" обеспечивается следующим кодом:</para>
+            <programlistingco>
+                <areaspec/>
+                <programlisting linenumbering="numbered" language="javascript">/**
+/**
+* Проверка на заполнение поле "имя игрока"
+*/
+if (username != null) 
+{   
+    $('.start').css('display', 'none');
+    $('.reStart').css('display', 'block');
+    $('.hellow').text('С возвращением, ' + username + '!');
+
+    $('#startGame').click(function(){
+    
+        $('.reStart').css('display', 'none');
+        setTimeout(timer,1000);
+
+    });
+}
+}</programlisting>
+            </programlistingco>
+            <para>Здесь происходит проверка на правильность ответа
+                если проверка пройдена следующий вопрос
+                если нет конец игры.</para>
+                <programlisting>if( $('input[name=answer]:checked').val() == key[level] )
+    {
+        level++;
+        show(level);
+    }
+    else{gameOwer()}
+    
+    $('input').prop('checked', false);
+    $(tr.css('background','#fff'));
+    $(tr.removeClass('result'));
+    $(tr[tr.length - (level + 1)]).css('background','#FF0');
+    $(tr[tr.length - (level)]).css('color','#f0f');
+    $(tr[tr.length - (level)]).addClass('result');
+    $('label').css('color', '#555');
+</programlisting>
+            </programlistingco>
+            <para>Функция которая выполняет действие при не правильном ответе игрока .</para>
+        </sect2>
+                <programlisting>function end() {
+
+    $('.end').css('display', 'block');
+
+    if (tr.hasClass('result')) 
+    {
+        var tdResult = $("tr.result").children();
+        var tdText = tdResult[1].textContent;   
+        $('.showResult').text('ВЫ ВЫИГРАЛИ: ' + tdText + ' гривень');
+    }
+}</programlisting>
+            </programlistingco>
+            <para>Здесь в функции-обработчике Функция создает кук с базовыми параметрами </para>
+        </sect2>
+    </sect1>
+</article>
