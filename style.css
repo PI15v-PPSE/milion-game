@@ -6,7 +6,11 @@ td{
 } 
 #timer_inp{
 	background: khaki;
+<<<<<<< HEAD
 	width: 102px;
+=======
+	width: 101px;
+>>>>>>> lab4
 	height: 60px;
 	border: 2px solid black;
 	border-radius: 10%;
