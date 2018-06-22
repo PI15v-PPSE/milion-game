@@ -4,61 +4,61 @@
 <article xmlns="http://docbook.org/ns/docbook"
     xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
     <info>
-        <title>Кто хочет стать миллионером</title>
+        <title>Who wants to be a millionaire</title>
         <author>
-            <orgname>ДонНТУ</orgname>
+            <orgname>DonNTU</orgname>
             <address>
-<city>Донецк 2018</city>
+<city>Donetsk 2018</city>
            </address>
             <email>anton.demianenko.00@mail.ru</email>
         </author>
         <author>
-            <personname><firstname>Антон</firstname><surname>Демяненко</surname></personname>
+            <personname><firstname>Anton</firstname><surname>Demianenko</surname></personname>
         </author>
     </info>
     <sect1>
-        <title>О программе</title>
-        <para>Игра "Кто хоче стать миллионером" - аналог знаменитой игры викорины. Эта игра позволит с пользой для интелекта справить досуг.</para>
+        <title>About program</title>
+        <para>Game "who wants to be a millionaire" - an analogue of the famous quiz game. This game will allow for the benefit of intelligence to spend leisure time.</para>
         <informalfigure>
             <mediaobject>
                 <imageobject>
                     <imagedata fileref="images/img1.jpg" align="center" scale="50"
-                        annotations="Окно ввода имени "/>
+                        annotations="Name input window "/>
                 </imageobject>
             </mediaobject>
-            <para>Для того, что бы начать обменивать свои знания на деньги, клонируйте репозиторий <link
-                    xlink:href="https://github.com/PI15v-PPSE/milion-game"/>. После этого откройте в
-                браузере файл index.html</para>
+            <para>To start exchanging your knowledge for money, clone the repository <link
+                    xlink:href="https://github.com/PI15v-PPSE/milion-game"/>. Then open the
+                browser file index.html</para>
         </informalfigure>
     </sect1>
     <sect1>
-        <title>Сценарии использования</title>
+        <title>Usage scenario</title>
         <sect2>
-            <title>Сценарий 1 (Проигрыш)</title>
+            <title>Scenario 1 (Losing)</title>
             <orderedlist>
                 <listitem>
-                    <para>Пользователь не правильно отвечае на вопрос викторины<inlinemediaobject>
+                    <para>The user incorrectly answers a quiz question<inlinemediaobject>
                             <imageobject>
                                 <imagedata fileref="images/img2.png" scale="50" align="center"/>
                             </imageobject>
                         </inlinemediaobject></para>
                 </listitem>
                 <listitem>
-                    <para>Игрок выиграл<inlinemediaobject>
+                    <para>Player won<inlinemediaobject>
                             <imageobject>
                                 <imagedata fileref="images/img3.png" align="center" scale="50"/>
                             </imageobject>
                         </inlinemediaobject></para>
                 </listitem>
                 <listitem>
-                    <para>Игрок выбирае подсказку 50/50.<inlinemediaobject>
+                    <para>The player chooses a hint 50/50.<inlinemediaobject>
                             <imageobject>
                                 <imagedata fileref="images/img4.png" align="center" scale="50"/>
                             </imageobject>
                         </inlinemediaobject></para>
                 </listitem>
             </orderedlist>
-            <para>Проверка на заполнение поле "имя игрока" обеспечивается следующим кодом:</para>
+            <para>Verification of the "player name" field is provided by the following code:</para>
             <programlistingco>
                 <areaspec/>
                 <programlisting linenumbering="numbered" language="javascript">/**
@@ -80,9 +80,9 @@ if (username != null)
 }
 }</programlisting>
             </programlistingco>
-            <para>Здесь происходит проверка на правильность ответа
-                если проверка пройдена следующий вопрос
-                если нет конец игры.</para>
+            <para>Here is the check for the correct answer
+                if the test passed the following question
+                if not the end of the game.</para>
                 <programlisting>if( $('input[name=answer]:checked').val() == key[level] )
     {
         level++;
@@ -99,7 +99,7 @@ if (username != null)
     $('label').css('color', '#555');
 </programlisting>
             </programlistingco>
-            <para>Функция которая выполняет действие при не правильном ответе игрока .</para>
+            <para>A function that performs an action when the player answers incorrectly .</para>
         </sect2>
                 <programlisting>function end() {
 
@@ -109,11 +109,11 @@ if (username != null)
     {
         var tdResult = $("tr.result").children();
         var tdText = tdResult[1].textContent;   
-        $('.showResult').text('ВЫ ВЫИГРАЛИ: ' + tdText + ' гривень');
+        $('.showResult').text('YOU WON: ' + tdText + ' rub');
     }
 }</programlisting>
             </programlistingco>
-            <para>Здесь в функции-обработчике Функция создает кук с базовыми параметрами </para>
+            <para>Here in the handler function, the Function creates a cook with basic parameters </para>
         </sect2>
     </sect1>
 </article>
