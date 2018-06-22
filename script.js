@@ -23,11 +23,8 @@ var name = 'name';
 */
 var username = readCookie(name);
 
-/**
-* Проверка на заполнение поле "имя игрока"
-*/
-if (username != null) 
-{	
+
+if (username != null) {	
     $('.start').css('display', 'none');
     $('.reStart').css('display', 'block');
     $('.hellow').text('С возвращением, ' + username + '!');
@@ -52,10 +49,6 @@ function show(level) {
 }
 
 /**
-*  определяет уровень игрока(вопрос на какую сумму задан)
-*/
-
-/**
 *@var resultConst переменная хранит уровень
 */
 var resultConst = [];		
@@ -71,13 +64,7 @@ $('.btn').click(function(){
 
     $("#timer_inp").text(60);
 
-     /**
-     * проверка на правильность ответа
-     * если проверка пройдена следующий вопрос
-     * если нет конец игры
-     */
-    if( $('input[name=answer]:checked').val() == key[level] )
-      {
+    if( $('input[name=answer]:checked').val() == key[level] ){
         level++;
         show(level);
         }
@@ -91,28 +78,38 @@ $('.btn').click(function(){
         $(tr[tr.length - (level)]).addClass('result');
         $('label').css('color', '#555');
 
-     /**
-     * проверка на незгараемую сумму
-     */
-	if (level == 5 || level == 10 || level == 15) 
-	{
+	if (level == 5 || level == 10 || level == 15){
 	    resultConst.push($(tr[tr.length - (level)]).addClass('resultConst'));
 	}
 })
 
+/**
+*вызываем математические функции
+*/
 Math.rand = function(min, max){
     return Math.round(Math.random() * (max-min) + min);
 }
 
+/**
+*@var inputLabel вставляет надпись
+*/
 var inputLabel = document.getElementsByTagName('label');
 $('.round50').click(function(){
+/**
+*@var inputAnswer вставляет ответ
+*/
+/**
+*@var exp экспонента
+*/
+/**
+*@var count считающая количество
+*/    
 var inputAnswer = document.getElementsByName('answer');
 var exp = [];	
 var count = 0;
 while(count < 2) {
     var index = Math.rand(0,3);
-     if (exp.indexOf(index) == -1 && $(inputAnswer[index]).val() != key[level] ) 
-     {
+     if (exp.indexOf(index) == -1 && $(inputAnswer[index]).val() != key[level] ){
 	$(inputLabel[index]).css('color', '#69f');
 	count++;
 	exp.push(index);
@@ -121,7 +118,9 @@ while(count < 2) {
       $(this).off('click');
       $(this).css('background', 'red');
 })
-	 
+/**
+*функция обработки клика
+*/	 
 $('.round').click(function(){
 		
     $(inputLabel[Math.rand(0,3)]).css('color', '#F90'),
@@ -129,7 +128,9 @@ $('.round').click(function(){
     $(this).css('background', 'red');
 		
 })
-
+/**
+*@var result вывод результата
+*/
 var result = $('.result'); 
 $('.roundEnd').click(function(){
 
@@ -138,13 +139,13 @@ $('.roundEnd').click(function(){
 
 /**
 * Функция которая выполняет действие при не правильном ответе игрока 
+* Функция ни принимает не какой переменной и ничего не возвращает
 */
 function end() {
 
         $('.end').css('display', 'block');
 
-        if (tr.hasClass('result')) 
-	{
+        if (tr.hasClass('result')) {
 	       var tdResult = $("tr.result").children();
 	       var tdText = tdResult[1].textContent;	
 	       $('.showResult').text('ВЫ ВЫИГРАЛИ: ' + tdText + ' гривень');
@@ -153,13 +154,19 @@ function end() {
 
 /**
 * Функция которая выполняет действие при ответе игроком на все вопросы
+* Не принимает переменных и выводит текст в форму выиграша
+*/
+/**
+*@var tdResult1 вывод результата
+*/
+/**
+*@var tdText1 вывод текст
 */
 function gameOwer() {
 
         $('.end').css('display', 'block');
 
-        if (tr.hasClass('resultConst')) 
-        {
+        if (tr.hasClass('resultConst')){
 	        var tdResult1 = $(resultConst[resultConst.length - 1]).children();
 	        var tdText1 = tdResult1[1].textContent;
 	        $('.showResult').text('ВЫ ВЫИГРАЛИ: ' + tdText1 + ' гривень');
@@ -168,7 +175,7 @@ function gameOwer() {
 
 /**
 * Функция которая устанавливает лимит по времени
-* и следит за его исполнением
+* и следит за его исполнением.
 */
 function timer(){
 
@@ -179,12 +186,12 @@ function timer(){
 	        {
 	         $('#timer_inp').css('background', 'red');
 	        }
-        if(objTimer.innerHTML==0)
-	        {
+        if(objTimer.innerHTML==0){
 	        setTimeout(function(){},1000);
 	        gameOwer();
-	        }
-        else{setTimeout(timer,1000)}
+	     }
+        else{
+            setTimeout(timer,1000)}
 
 }
 
@@ -196,13 +203,11 @@ $('form').submit(function(e){
 
 $('#start').click(function(){
 
-        if ($('#user').val() != '') 
-        {
+        if ($('#user').val() != '') {
 	        $('.start').css('display', 'none');
 	        setTimeout(timer,1000);
         }
-        else
-        {
+        else{
 	        $('#user').css('background', '#f30')
         }	
 
@@ -213,16 +218,21 @@ $('#start').click(function(){
 
 /**
 * Функция создает кук с базовыми параметрами 
+* Принимает переменные имени даты и значения
+*/
+/**
+*@var date дата
+*/
+/**
+*@var expires вывод в документ
 */
 function createCookie(name, value, days) {
-    if (days) 
-    {
+    if (days)  {
         var date = new Date();
         date.setTime(date.getTime() + (days * 24 * 60 * 60 *1000));
         var expires = "; expires=" + date.toGMTString();
     }
-    else 
-    {
+    else {
         var expires = "";
     }
     document.cookie = name + "=" + value + expires + "; path=/";
@@ -230,9 +240,16 @@ function createCookie(name, value, days) {
 
 /**
 * Функция читает кук данные 
+* Принимает переменные имени
+* Возвращает 0 или значение функции
 */
 function readCookie(name) {
-
+/**
+*@var nameEQ имя игрока
+*/
+/**
+*@var ca вывод в документ
+*/
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
 
